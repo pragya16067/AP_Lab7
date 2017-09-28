@@ -17,7 +17,7 @@ import org.junit.Test;
 
 public class FirstTest {
 	
-
+	
 	@Test
 	public void TestAdd() throws IOException, ClassNotFoundException
 	{
@@ -33,13 +33,11 @@ public class FirstTest {
 		Serialize("PlayListForTest1" , s);
 		
 		//now to test adding of a song
-		Song newS= new Song("Ikk vaari aa", "Arijit Singh", 3.56);
-		s.add(newS);
-		
-		Serialize("PlayListForTest1" , s);
-		ArrayList<Song> newList = Deserialize("PlayListForTest1");
+		ArrayList<Song> newList=ShowAfterAddingSong(s);
 		
 		//Now to check if the serialized-deserialized version is same as if normal addition was done in an array
+		Song newS= new Song("Ikk vaari aa", "Arijit Singh", 3.56);
+		s.add(newS);
 		
 		for(int i=0; i<5; i++)
 		{
@@ -53,6 +51,17 @@ public class FirstTest {
 	}
 	
 	
+	
+	public static ArrayList<Song> ShowAfterAddingSong(ArrayList<Song> s) throws IOException, ClassNotFoundException{
+		
+		Song newS= new Song("Ikk vaari aa", "Arijit Singh", 3.56);
+		s.add(newS);
+		
+		Serialize("PlayListForTest1" , s);
+		ArrayList<Song> newList = Deserialize("PlayListForTest1");
+		
+		return newList;
+	}
 	
 	public static void Serialize(String filename, ArrayList<Song> songs) throws IOException {
 		filename= "./src/PlayLists/"+filename+".txt";
